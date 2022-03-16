@@ -9,7 +9,8 @@ namespace Snake
     class Snake : Figure
     {
 		Direction direction;
-
+		public int points;
+		//
 		public Snake(Point tail, int length, Direction _direction)
 		{
 			direction = _direction;
@@ -21,7 +22,7 @@ namespace Snake
 				pList.Add(p);
 			}
 		}
-
+		//
 		public void Move()
 		{
 			Point tail = pList.First();
@@ -32,7 +33,7 @@ namespace Snake
 			tail.Clear();
 			head.Draw();
 		}
-
+		//
 		public Point GetNextPoint()
 		{
 			Point head = pList.Last();
@@ -40,7 +41,7 @@ namespace Snake
 			nextPoint.Move(1, direction);
 			return nextPoint;
 		}
-
+		//
 		public bool IsHitTail()
 		{
 			var head = pList.Last();
@@ -51,7 +52,7 @@ namespace Snake
 			}
 			return false;
 		}
-
+		//
 		public void HandleKey(ConsoleKey key)
 		{
 			if (key == ConsoleKey.LeftArrow)
@@ -63,7 +64,7 @@ namespace Snake
 			else if (key == ConsoleKey.UpArrow)
 				direction = Direction.UP;
 		}
-
+		//функция увеличения фигуры "змейка" при столкновении с фигурой "еда"
 		public bool Eat(Point food)
 		{
 			Point head = GetNextPoint();
@@ -71,6 +72,7 @@ namespace Snake
 			{
 				food.sym = head.sym;
 				pList.Add(food);
+				points++;
 				return true;
 			}
 			else

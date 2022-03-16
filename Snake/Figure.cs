@@ -9,7 +9,7 @@ namespace Snake
     class Figure
     {
 		protected List<Point> pList;
-
+		//функция прорисовки точек в листе
 		public void Draw()
 		{
 			foreach (Point p in pList)
@@ -17,7 +17,7 @@ namespace Snake
 				p.Draw();
 			}
 		}
-
+		//функция столкновения фигуры "змейка" сама с собой
 		internal bool IsHit(Figure figure)
 		{
 			foreach (var p in pList)
@@ -27,7 +27,7 @@ namespace Snake
 			}
 			return false;
 		}
-
+		//функция столкновения фигуры "змейка" с фигурой точка
 		private bool IsHit(Point point)
 		{
 			foreach (var p in pList)

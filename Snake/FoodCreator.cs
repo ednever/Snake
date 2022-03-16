@@ -13,14 +13,14 @@ namespace Snake
 		char sym;
 
 		Random random = new Random();
-
+		
 		public FoodCreator(int mapWidth, int mapHeight, char sym)
 		{
 			this.mapWidht = mapWidth;
 			this.mapHeight = mapHeight;
 			this.sym = sym;
 		}
-
+		//определение местоположения точки "еда" и перезапись точки
 		public Point CreateFood()
 		{
 			int x = random.Next(2, mapWidht - 2);
