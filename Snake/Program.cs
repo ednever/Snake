@@ -11,7 +11,7 @@ namespace Snake
     {
         static void Main(string[] args)
         {
-			//Console.SetBufferSize(80, 25);
+			Console.SetBufferSize(80, 25);
 			Walls walls = new Walls(80, 25);
 			walls.Draw();
 
@@ -59,9 +59,8 @@ namespace Snake
 			Console.ForegroundColor = ConsoleColor.Red;
 			Console.SetCursorPosition(xOffset, yOffset++);
 			WriteText("============================", xOffset, yOffset++);
-			WriteText("И Г Р А    О К О Н Ч Е Н А", xOffset + 1, yOffset++);
-			yOffset++;
-			WriteText("Автор: Эдгар Неверовский", xOffset + 2, yOffset++);
+			WriteText("G A M E    O V E R", xOffset + 1, yOffset++);
+			WriteText("Autor: Edgar Neverovski", xOffset + 2, yOffset++);
 			WriteText("============================", xOffset, yOffset++);
 		}
 
