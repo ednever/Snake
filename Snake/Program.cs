@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
+using System.Media;
+using System.IO;
 
 namespace Snake
 {
@@ -11,7 +13,9 @@ namespace Snake
     {
         static void Main(string[] args)
         {
-			
+			int score = 0;
+            Console.WriteLine("Kirjuta oma nimi >>> ");
+            string name = Console.ReadLine();
 			Walls walls = new Walls(80, 25);
 			walls.Draw();
 
@@ -22,21 +26,27 @@ namespace Snake
 			
 			snake.Draw();
 
+			//создание точки "еда"
 			FoodCreator foodCreator = new FoodCreator(80, 25, '*');
 			Point food = foodCreator.CreateFood();
 			food.Draw();
 
+			//процесс игры
 			while (true)
 			{
+				//если фигура "стена" и фигура "хвост змеи" касается фигуры "змейка" игра прекращается
 				if (walls.IsHit(snake) || snake.IsHitTail())
 				{
 					break;
 				}
+				//если змея ест еду очки увеличиваются
 				if (snake.Eat(food))
 				{
 					food = foodCreator.CreateFood();
 					food.Draw();
+					score++;
 				}
+				//если события не происходят, то фигура "змейка" движется
 				else
 				{
 					snake.Move();
@@ -49,23 +59,39 @@ namespace Snake
 					snake.HandleKey(key.Key);
 				}
 			}
-			WriteGameOver();
-			Console.ReadLine();
+			WriteGameOver(score, name);
+
+			//работа с файлом
+            //string[] v = new string[5];
+            //v[0] = name;
+            //v[1] = "ZXC";
+            //StreamWriter to_file = new StreamWriter("Gamers.txt", true);
+            //for (int i = 0; i < v.Length; i++)
+            //{
+            //    to_file.WriteLine(v[i]);
+            //}
+
+            //to_file.Close();
+            //StreamReader from_file = new StreamReader("Gamers.txt");
+            //string text = from_file.ReadToEnd();
+            //Console.WriteLine(text);
+            //from_file.Close();
+
+            Console.ReadLine();
 		}
 
-
-		static void WriteGameOver()
+		//функция вывода окончания игры
+		static void WriteGameOver(int score, string name)
 		{
 			int xOffset = 25;
 			int yOffset = 8;
 			Console.ForegroundColor = ConsoleColor.Red;
 			Console.SetCursorPosition(xOffset, yOffset++);
-			WriteText("==================", xOffset, yOffset++);
-			WriteText("G A M E    O V E R", xOffset + 1, yOffset++);
-			WriteText("Y O U R    S C O R E", xOffset + 2, yOffset++);
-			WriteText("==================", xOffset, yOffset++);
+			WriteText("=====================", xOffset, yOffset++);
+			WriteText(" G A M E    O V E R ", xOffset, yOffset++);
+			WriteText($" {name}, your score: {score}", xOffset, yOffset++);
+			WriteText("=====================", xOffset, yOffset++);
 		}
-
 		static void WriteText(String text, int xOffset, int yOffset)
 		{
 			Console.SetCursorPosition(xOffset, yOffset);

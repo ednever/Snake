@@ -10,6 +10,7 @@ namespace Snake
     {
 		public VerticalLine(int yUp, int yDown, int x, char sym)
 		{
+			//добавление точек в лист с точками по координате y
 			pList = new List<Point>();
 			for (int y = yUp; y <= yDown; y++)
 			{

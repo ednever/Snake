@@ -29,7 +29,7 @@ namespace Snake
 			y = p.y;
 			sym = p.sym;
 		}
-
+		//изменение координаты от значениях направления
 		public void Move(int offset, Direction direction)
 		{
 			if (direction == Direction.RIGHT)
@@ -49,24 +49,24 @@ namespace Snake
 				y = y + offset;
 			}
 		}
-
+		//функция столкновения точек
 		public bool IsHit(Point p)
 		{
 			return p.x == this.x && p.y == this.y;
 		}
-
+		//функция прорисовки символа в заданной позиции
 		public void Draw()
 		{
 			Console.SetCursorPosition(x, y);
 			Console.Write(sym);
 		}
-
+		//функция замещения символа на пробел
 		public void Clear()
 		{
 			sym = ' ';
 			Draw();
 		}
-
+		//функция преобразования переменных в текст
 		public override string ToString()
 		{
 			return x + ", " + y + ", " + sym;

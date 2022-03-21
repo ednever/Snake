@@ -10,7 +10,7 @@ namespace Snake
     {
 		Direction direction;
 		public int points;
-		//
+		//структура фигуры "змейка"
 		public Snake(Point tail, int length, Direction _direction)
 		{
 			direction = _direction;
@@ -22,7 +22,7 @@ namespace Snake
 				pList.Add(p);
 			}
 		}
-		//
+		//функция изменения направления хвоста и головы фигуры "змейка" 
 		public void Move()
 		{
 			Point tail = pList.First();
@@ -33,7 +33,7 @@ namespace Snake
 			tail.Clear();
 			head.Draw();
 		}
-		//
+		//функция изменения местоположения головы
 		public Point GetNextPoint()
 		{
 			Point head = pList.Last();
@@ -41,7 +41,7 @@ namespace Snake
 			nextPoint.Move(1, direction);
 			return nextPoint;
 		}
-		//
+		//функция столкновения головы с хвостом
 		public bool IsHitTail()
 		{
 			var head = pList.Last();
@@ -52,7 +52,7 @@ namespace Snake
 			}
 			return false;
 		}
-		//
+		//обозначение клавиш в системе
 		public void HandleKey(ConsoleKey key)
 		{
 			if (key == ConsoleKey.LeftArrow)
