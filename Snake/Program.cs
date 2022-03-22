@@ -13,14 +13,9 @@ namespace Snake
     {
         static void Main(string[] args)
         {
-            
-            
-
-            Thread.Sleep(2000);
-
-            string[] menuItems = new string[] { "Start", "Author", "Players", "Quit" };
             Console.SetWindowSize(80, 25);
             Console.WriteLine("SNAKE GAME \n");
+            string[] menuItems = new string[] { "Start", "Author", "Players", "Quit" };
             int row = Console.CursorTop;
             int col = Console.CursorLeft;
             int index = 0;
@@ -69,7 +64,7 @@ namespace Snake
                                 snake.Draw();
 
                                 //создание точки "еда"
-                                FoodCreator foodCreator = new FoodCreator(80, 25, '*');
+                                FoodCreator foodCreator = new FoodCreator(80, 25, '#');
                                 Point food = foodCreator.CreateFood();
                                 food.Draw();
 
@@ -119,6 +114,7 @@ namespace Snake
                                 break;
                             case 2:
                                 Console.Clear();
+                                WriteText("Rohkem 10 punkti ja oled siin >>> ", 20, 0);
                                 StreamReader from_file = new StreamReader("Gamers.txt");
                                 string text = from_file.ReadToEnd();
                                 Console.WriteLine(text);
@@ -146,7 +142,7 @@ namespace Snake
 			Console.SetCursorPosition(xOffset, yOffset++);
 			WriteText("=====================", xOffset, yOffset++);
 			WriteText(" G A M E    O V E R ", xOffset, yOffset++);
-			WriteText($"{name}, your score: {score}", xOffset, yOffset++);
+			WriteText($" {name}, your score: {score}", xOffset, yOffset++);
 			WriteText("=====================", xOffset, yOffset++);
 		}
         //функция вывода текста
