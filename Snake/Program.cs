@@ -97,9 +97,9 @@ namespace Snake
                                     }
                                 }
                                 WriteGameOver(score, name);
-                                if (score >= 10)
+                                if (score >= 2)
                                 {
-                                    StreamWriter to_file = new StreamWriter("Gamers.txt", true);
+                                    StreamWriter to_file = new StreamWriter(@"..\..\Gamers.txt", true);
                                     to_file.WriteLine(name + " - " + score);
                                     to_file.Close();
                                 }                                
@@ -115,7 +115,7 @@ namespace Snake
                             case 2:
                                 Console.Clear();
                                 WriteText("Rohkem 10 punkti ja oled siin >>> ", 20, 0);
-                                StreamReader from_file = new StreamReader("Gamers.txt");
+                                StreamReader from_file = new StreamReader(@"..\..\Gamers.txt");
                                 string text = from_file.ReadToEnd();
                                 Console.WriteLine(text);
                                 from_file.Close();
